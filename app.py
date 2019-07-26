@@ -12,6 +12,32 @@ def ask_for_location(event):
 	return line_bot_api.reply_message(event.reply_token,
 		LocationSendMessage(title='my location', address='Tainan', latitude=22.994821, longitude=120.196452))
 
+def ask_for_buttontemplate(event):
+	buttons_template_message = TemplateSendMessage(
+    alt_text='Buttons template',
+    template=ButtonsTemplate(
+        thumbnail_image_url='https://www.penghu-nsa.gov.tw/FileDownload/Album/Big/20161012162551758864338.jpg',
+        title='Menu',
+        text='Please select',
+        actions=[
+            PostbackAction(
+                label='postback',
+                display_text='postback text',
+                data='action=buy&itemid=1'
+            ),
+            MessageAction(
+                label='message',
+                text='message text'
+            ),
+            URIAction(
+                label='uri',
+                uri='https://scholar.google.com.tw/'
+                )
+            ]
+        )
+    )
+    return line_bot_api.reply_message(event.reply_token,buttons_template_message)
+
 
 app = Flask(__name__)
 
@@ -45,6 +71,8 @@ def handle_message(event):
     message = TextSendMessage(text=event.message.text)
     if(event.message.text == "位置"):
         ask_for_location(event)
+    elif(event.message.text == "按鈕樣板"):
+        ask_for_buttontemplate(event)
 
     line_bot_api.reply_message(event.reply_token, message)
 
