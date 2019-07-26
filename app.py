@@ -9,11 +9,11 @@ from linebot.exceptions import (
 from linebot.models import *
 
 def ask_for_location(event):
-	return line_bot_api.reply_message(event.reply_token,
-		LocationSendMessage(title='my location', address='Tainan', latitude=22.994821, longitude=120.196452))
+    return line_bot_api.reply_message(event.reply_token,
+    LocationSendMessage(title='my location', address='Tainan', latitude=22.994821, longitude=120.196452))
 
 def ask_for_buttontemplate(event):
-	buttons_template_message = TemplateSendMessage(
+    buttons_template_message = TemplateSendMessage(
     alt_text='Buttons template',
     template=ButtonsTemplate(
         thumbnail_image_url='https://www.penghu-nsa.gov.tw/FileDownload/Album/Big/20161012162551758864338.jpg',
