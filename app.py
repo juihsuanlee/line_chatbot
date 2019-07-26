@@ -8,6 +8,11 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 
+def ask_for_location():
+	return line_bot_api.reply_message(event.reply_token,
+		LocationSendMessage(title='my location', address='Tainan', latitude=22.994821, longitude=120.196452))
+
+
 app = Flask(__name__)
 
 # Channel Access Token
@@ -40,7 +45,7 @@ def handle_message(event):
     message = TextSendMessage(text=event.message.text)
     if(event.message.text == "位置"):
     	ask_for_location()
-    	
+
     line_bot_api.reply_message(event.reply_token, message)
 
 
@@ -50,6 +55,4 @@ if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
 
-def ask_for_location():
-	return line_bot_api.reply_message(event.reply_token,
-		LocationSendMessage(title='my location', address='Tainan', latitude=22.994821, longitude=120.196452))
+
