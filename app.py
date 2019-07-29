@@ -8,6 +8,7 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 
+
 def ask_for_location(event):
     return line_bot_api.reply_message(event.reply_token,
     LocationSendMessage(title='my location', address='Tainan', latitude=22.994821, longitude=120.196452))
@@ -69,12 +70,17 @@ def handle_message(event):
     print(message_encode)
 
     message = TextSendMessage(text=event.message.text)
+    
+        
     if(event.message.text == "位置"):
         ask_for_location(event)
     elif(event.message.text == "按鈕樣板"):
         ask_for_buttontemplate(event)
 
-    line_bot_api.reply_message(event.reply_token, message)
+        
+    reply = requests.get('http://140.115.54.90:10034/give_sentence?sentence='+event.message.text)
+
+    line_bot_api.reply_message(event.reply_token, reply)
 
 
 
