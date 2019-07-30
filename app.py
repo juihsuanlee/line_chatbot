@@ -78,9 +78,9 @@ def handle_message(event):
         ask_for_buttontemplate(event)
 
         
-    reply = requests.get('http://140.115.54.90:10034/give_sentence?sentence='+event.message.text)
-    print(reply)
-    line_bot_api.reply_message(event.reply_token, reply)
+    # reply = requests.get('http://140.115.54.90:10034/give_sentence?sentence='+event.message.text)
+    # print(reply)
+    line_bot_api.reply_message(event.reply_token, message)
 
 
 
