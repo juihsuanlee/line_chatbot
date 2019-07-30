@@ -43,9 +43,9 @@ def ask_for_buttontemplate(event):
 app = Flask(__name__)
 
 # Channel Access Token
-line_bot_api = LineBotApi('xEk2054U5Hmt63G2t4I1lYgo6iTPndl4E35PngVEH2DT5/2v/veu2UWmBwt3k9e3b+57dfVuvGjorUHRphH8j19bStZ8LM8pVebg/i2vDB/t2tva7yqc887zingBUyRaLEKg91FZzCQH8ztjQDMB8gdB04t89/1O/w1cDnyilFU=')
+line_bot_api = LineBotApi('A83h6LCWCI4nv6Jsz5vNAl+XsKy15SXLfRUxv19R+g3kdBzIsnMJ8Yc4k90MC5r5WfAyo5O+m0NSiTomgu7YtE5V7d4/h8pME2nJirikkjW+QzNxSXzIsBikV1PbPqVjRpCk9DOWuXuRMtwbgdvuCwdB04t89/1O/w1cDnyilFU=')
 # Channel Secret
-handler = WebhookHandler('5315ea843597d595b356436b8432148a')
+handler = WebhookHandler('415b0bda341982e4fa53c5b62a406aa1')
 
 # 監聽所有來自 /callback 的 Post Request
 @app.route("/callback", methods=['POST'])
@@ -78,9 +78,9 @@ def handle_message(event):
         ask_for_buttontemplate(event)
 
         
-    reply = requests.get('http://140.115.54.90:10034/give_sentence?sentence='+event.message.text)
-
-    line_bot_api.reply_message(event.reply_token, reply)
+    # reply = requests.get('http://140.115.54.90:10034/give_sentence?sentence='+event.message.text)
+    # print(reply)
+    line_bot_api.reply_message(event.reply_token, message)
 
 
 
